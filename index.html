@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD RAHMIII 🧸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fff0f5;
+            overflow: hidden;
+            font-family: 'Indie Flower', cursive;
+        }
+
+        /* Container Utama */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            border: 10px solid #ffb6c1;
+            z-index: 10;
+            position: relative;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-family: 'Cherry Bomb One', cursive;
+            color: #ff1493;
+            font-size: 2.5rem;
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        /* BERUANG LUCU (CSS ART) */
+        .bear-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .bear-head {
+            width: 100px;
+            height: 90px;
+            background: #bb8d6a;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            bottom: 10px;
+            left: 25px;
+        }
+
+        .ear {
+            width: 35px;
+            height: 35px;
+            background: #bb8d6a;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .ear.left { top: 0; left: 20px; }
+        .ear.right { top: 0; right: 20px; }
+
+        .eye {
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        .eye.left { left: 30px; }
+        .eye.right { right: 30px; }
+
+        .nose {
+            width: 20px;
+            height: 15px;
+            background: #6d4c41;
+            border-radius: 50%;
+            position: absolute;
+            top: 55px;
+            left: 40px;
+        }
+
+        .blush {
+            width: 15px;
+            height: 8px;
+            background: #ffb6c1;
+            border-radius: 50%;
+            position: absolute;
+            top: 55px;
+            opacity: 0.6;
+        }
+        .blush.left { left: 15px; }
+        .blush.right { right: 15px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* KUE */
+        .cake-emoji {
+            font-size: 3rem;
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* TOMBOL MUSIK */
+        .btn-music {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Cherry Bomb One', cursive;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-music:hover { background: #ff1493; transform: scale(1.1); }
+
+        /* CONFETTI */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: -20px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="hbdAudio" loop>
+        <source src="RAHMi Happy Birthday Song.mp3" type="audio/mp3">
+        </audio>
+
+    <div class="card">
+        <div class="bear-container">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="bear-head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+                <div class="nose"></div>
+            </div>
+        </div>
+        
+        <h1>Selamat Ulang Tahun Rahmi Sih Kecik</h1>
+        <span class="cake-emoji">🎂✨</span>
+        <p>Semoga bahagia selalu dan makin imut!</p>
+        
+        <button class="btn-music" onclick="toggleMusic()">🎵 Klik untuk Musik</button>
+    </div>
+
+    <script>
+        function toggleMusic() {
+            const audio = document.getElementById('hbdAudio');
+            if (audio.paused) {
+                audio.play();
+                document.querySelector('.btn-music').innerText = "⏸ Matikan Musik";
+            } else {
+                audio.pause();
+                document.querySelector('.btn-music').innerText = "🎵 Putar Musik";
+            }
+        }
+
+        const colors = ['#ff69b4', '#ff1493', '#00ced1', '#ffd700', '#adff2f', '#ff4500'];
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        setInterval(createConfetti, 100);
+    </script>
+</body>
+</html>
